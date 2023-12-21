@@ -4,7 +4,7 @@
   "description": "A user management service",
   "main": "index.js",
   "scripts": {
-    "dev": "node src/server.js",
+    "dev": "node src/server.ts",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "lint:fix": "eslint . --fix",
@@ -15,6 +15,7 @@
   "author": "Kinjal <kinjalnagar26@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/node": "^20.10.3",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
