@@ -1,11 +1,18 @@
-import { Config } from "./config";
+import {Config } from "./config";
+import app from "./app";
 
+const startServer =  () => {
+ 
+    try {
+        const PORT = Config.PORT
+    app.listen(PORT,()=> console.log(`Listening on port ${PORT}`));
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    }
 
-const PORT = Config.PORT;
-const NODE_ENV = Config.NODE_ENV;
-// Log the value of PORT
-console.log("PORT", PORT,"NODE_ENV", NODE_ENV);
+}
 
+startServer();
 
-//  npm install -g ts-node
-// npm install --save-dev @types/dotenv
+console.log(Config.PORT)
