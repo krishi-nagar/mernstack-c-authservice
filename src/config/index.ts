@@ -10,5 +10,3 @@ export const Config = {
     PORT,
     NODE_ENV
 };
-// const dotenv = require('dotenv');
-// dotenv.config();

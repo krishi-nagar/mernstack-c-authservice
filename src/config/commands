@@ -1,0 +1,16 @@
+
+
+//  npm install -g ts-node
+// npm install --save-dev @types/dotenv
+
+/* in index.ts*/ 
+// const dotenv = require('dotenv');
+// dotenv.config();
+
+/* env should be in same folder which file you wanna run  */
+
+/* to run ts file */
+
+// npx ts-node filename.ts
+
+// npm install --save-dev @babel/plugin-proposal-private-property-in-object
