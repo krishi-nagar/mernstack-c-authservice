@@ -1,9 +1,7 @@
-
-
 //  npm install -g ts-node
 // npm install --save-dev @types/dotenv
 
-/* in index.ts*/ 
+/* in index.ts*/
 // const dotenv = require('dotenv');
 // dotenv.config();
 
@@ -14,3 +12,6 @@
 // npx ts-node filename.ts
 
 // npm install --save-dev @babel/plugin-proposal-private-property-in-object
+
+//npm i winston
+//npm install -D @types/winston
