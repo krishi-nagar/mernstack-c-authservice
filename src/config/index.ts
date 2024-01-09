@@ -5,7 +5,7 @@ dotenv.config();
 
 const {PORT, NODE_ENV} = process.env;
 
-// console.log("aaaaaaaaa",PORT,NODE_ENV);
+console.log("aaaaaaaaa",PORT,NODE_ENV);
 
 export const Config = {
     PORT,

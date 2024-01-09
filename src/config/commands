@@ -30,3 +30,8 @@
 //npm install --save-dev babel-jest
 
 //npm install -D supertest
+
+//docker build -t auth-service:dev -f docker/dev/Dockerfile . 
+//docker build .
+//docker run --network="host" -p 5501:5501 node:18   
+// docker run --rm -it -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules --env-file ${PWD}/.env -p 5501:5501 -e NODE_ENV=development auth-service:dev
