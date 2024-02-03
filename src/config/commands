@@ -35,3 +35,12 @@
 //docker build .
 //docker run --network="host" -p 5501:5501 node:18   
 // docker run --rm -it -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules --env-file ${PWD}/.env -p 5501:5501 -e NODE_ENV=development auth-service:dev
+
+
+// to test or unit test run => npm run test which runs jest unit test files like spec.ts
+
+//postgres creds user:postgres pwd:root
+
+//npm install typeorm --save
+//npm install reflect-metadata --save
+//npm install pg --save
