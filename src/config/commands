@@ -44,3 +44,5 @@
 //npm install typeorm --save
 //npm install reflect-metadata --save
 //npm install pg --save
+
+// npm install --save-dev cross-env
