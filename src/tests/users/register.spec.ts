@@ -81,7 +81,7 @@ describe("POST/auth/register",()=>{
                 expect(users[0].firstName).toBe(userData.firstName);
                 expect(users[0].lastName).toBe(userData.lastName);
                 expect(users[0].email).toBe(userData.email);
-                expect(users[0].password).toBe(userData.password);
+               // expect(users[0].password).toBe(userData.password);
 
         })
 
@@ -105,6 +105,28 @@ describe("POST/auth/register",()=>{
         expect (users[0]).toHaveProperty("role");
         expect(users[0].role).toBe(Roles.CUSTOMER); 
         });
+
+        it("should store the hash password in the database",async()=>{
+           // Arange
+           const userData = {
+            firstName : "Kinjal",
+            lastName : "Nagar",
+            email : "knagar@gmail.com",
+            password : "secret",
+        };
+
+        //Act 
+        const response = await request(app)
+            .post("/auth/register")
+            .send(userData);
+
+        //Assert 
+        const userRepository = connection.getRepository(User)
+        const users = await userRepository.find();
+        expect(users[0].password).not.toBe(userData.password)
+        expect(users[0].password).toHaveLength(60);
+        expect(users[0].password).toMatch(/^\$2b\$\d+\$/)
+        })
     })
     describe("Fields are missing ",()=>{});
 })
