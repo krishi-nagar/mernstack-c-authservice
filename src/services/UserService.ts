@@ -31,4 +31,9 @@ export class UserService {
         }
     }
 
+    async findByEmail(email:string){
+        return await this.userRepository.findOne({where: {email: email}})
+       
+    }
+
 }   
