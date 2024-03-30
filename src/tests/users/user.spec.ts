@@ -92,5 +92,32 @@ describe("POST /auth/login", () => {
         "password",
       );
     });
+    it("should return 401 status code if token does not exists", async () => {
+      // Register user
+      const userData = {
+        firstName: "Kinjal",
+        lastName: "Nagar",
+        email: "knagar@gmail.com",
+        password: "password",
+      };
+      const userRepository = connection.getRepository(User);
+      const data = await userRepository.save({
+        ...userData,
+        role: Roles.CUSTOMER,
+      });
+      // Generate token
+      const accessToken = jwks.token({
+        sub: String(data.id),
+        role: data.role,
+      });
+
+      // Add token to cookie
+      const response = await request(app)
+        .get("/auth/self")
+        .send();
+      // Assert
+      // Check if user id matches with registered user
+      expect(response.statusCode).toBe(401);
+    });
   });
 });
