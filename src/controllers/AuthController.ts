@@ -99,7 +99,7 @@ export class AuthController {
     //return the response(id)
 
     try {
-      const user = await this.userService.findByEmail(email);
+      const user = await this.userService.findByEmailWithPassword(email);
       if (!user) {
         const error = createHttpError(400, "Email or Password doesn't match");
         next(error);
