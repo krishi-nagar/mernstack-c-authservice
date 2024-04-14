@@ -7,6 +7,7 @@ import { validationResult } from "express-validator";
 import { TokenService } from "../services/TokenService";
 import createHttpError from "http-errors";
 import { CredentialService } from "../services/CredentialService";
+import { Roles } from "../constants";
 
 export class AuthController {
   constructor(
@@ -38,6 +39,7 @@ export class AuthController {
         lastName,
         email,
         password,
+        role: Roles.CUSTOMER,
       });
       // console.log("User ID:", user.id); // Log the user ID after creation
       this.logger.info("User has been registered", { id: user.id });
@@ -216,7 +218,7 @@ export class AuthController {
       res.clearCookie("accessToken");
       res.clearCookie("refreshToken");
 
-      res.json({ });
+      res.json({});
     } catch (err) {
       next(err);
     }

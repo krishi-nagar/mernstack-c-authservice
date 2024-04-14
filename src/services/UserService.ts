@@ -1,15 +1,14 @@
 import createHttpError from "http-errors";
 import bcrypt from "bcrypt";
-import { AppDataSource } from "../config/data-source";
 import { User } from "../entity/User";
 import { UserData } from "../types";
 import { Repository } from "typeorm";
-import { Roles } from "../constants";
+
 export class UserService {
   // constructor using for the dependency injection process
   constructor(private userRepository: Repository<User>) {}
 
-  async create({ firstName, lastName, email, password }: UserData) {
+  async create({ firstName, lastName, email, password, role }: UserData) {
     const user = await this.userRepository.findOne({ where: { email: email } });
     if (user) {
       const err = createHttpError(400, "Email is already exists");
@@ -25,7 +24,7 @@ export class UserService {
         lastName,
         email,
         password: hashedPassword,
-        role: Roles.CUSTOMER,
+        role,
       });
     } catch (err) {
       const error = createHttpError(500, "Failed to store data in database");
