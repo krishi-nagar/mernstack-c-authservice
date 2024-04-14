@@ -13,14 +13,15 @@ export class UserController {
   ) {}
 
   async create(req: CreateUserRequest, res: Response, next: NextFunction) {
-    const { firstName, lastName, email, password, role } = req.body;
+    const { firstName, lastName, email, password, role, tenantId } = req.body;
     try {
       const user = await this.userService.create({
         firstName,
         lastName,
         email,
         password,
-        role: Roles.MANAGER,
+        role,
+        tenantId,
       });
 
       res.status(201).json({ id: user.id });
