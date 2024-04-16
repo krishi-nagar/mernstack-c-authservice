@@ -1,11 +1,11 @@
 import { DataSource, Repository } from "typeorm";
 import request from "supertest";
 import createJWTMock from "mock-jwks";
-import app from "../../../src/app";
-import { AppDataSource } from "../../config/data-source";
+import app from "../../src/app";
+import { AppDataSource } from "../../src/config/data-source";
 import createJWKSMock from "mock-jwks";
-import { User } from "../../entity/User";
-import { Roles } from "../../constants";
+import { User } from "../../src/entity/User";
+import { Roles } from "../../src/constants";
 
 describe("POST /auth/login", () => {
   let connection: DataSource;

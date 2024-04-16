@@ -1,12 +1,16 @@
-import { DataSource } from "typeorm";
+
+
+import { DataSource, Repository } from "typeorm";
 import bcrypt from "bcrypt";
 import request from "supertest";
-import app from "../../../src/app";
+import app from "../../src/app";
+import { AppDataSource } from "../../src/config/data-source";
+import createJWKSMock from "mock-jwks";
 import { isJWT } from "../utils";
-import { AppDataSource } from "../../config/data-source";
-import { User } from "../../entity/User";
-import { Roles } from "../../constants";
-
+import { User } from "../../src/entity/User";
+import { Roles } from "../../src/constants";
+import { Tenant } from "../../src/entity/Tenant";
+import { createTenant } from "../utils";
 
 describe("POST /auth/login", () => {
   let connection: DataSource;
