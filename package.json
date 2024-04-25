@@ -4,24 +4,20 @@
   "description": "A user management service",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon --legacy-watch ./src/server.ts",
+    "dev": "cross-env NODE_ENV=dev nodemon ./src/server.ts",
     "build": "tsc",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
-    "lint:fix": "eslint . --fix",
     "lint": "eslint .",
-    "prepare": "husky install",
+    "lint:fix": "eslint . --fix",
     "type": "module",
+    "prepare": "husky install",
+    "test:watch": "cross-env NODE_ENV=dev jest --watch --runInBand",
     "start": "ts-node src/index.ts",
-    "test": "cross-env NODE_ENV=dev jest --watch --runInBand",
+    "test": "cross-env NODE_ENV=dev jest --runInBand",
     "migration:generate": "typeorm-ts-node-esm migration:generate",
     "migration:run": "typeorm-ts-node-esm migration:run",
     "migration:create": "typeorm-ts-node-esm migration:create"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    }
   },
   "author": "Kinjal <kinjalnagar26@gmail.com>",
   "license": "ISC",
