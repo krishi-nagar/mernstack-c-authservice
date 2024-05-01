@@ -1,6 +1,5 @@
-import { DataSource, Repository } from "typeorm";
+import { DataSource } from "typeorm";
 import request from "supertest";
-import createJWTMock from "mock-jwks";
 import app from "../../src/app";
 import { AppDataSource } from "../../src/config/data-source";
 import createJWKSMock from "mock-jwks";
@@ -89,7 +88,7 @@ describe("POST /auth/login", () => {
       // Assert
       // Check if user id matches with registered user
       expect(response.body as Record<string, string>).not.toHaveProperty(
-        "password",
+        "password"
       );
     });
     it("should return 401 status code if token does not exists", async () => {
@@ -112,9 +111,7 @@ describe("POST /auth/login", () => {
       });
 
       // Add token to cookie
-      const response = await request(app)
-        .get("/auth/self")
-        .send();
+      const response = await request(app).get("/auth/self").send();
       // Assert
       // Check if user id matches with registered user
       expect(response.statusCode).toBe(401);

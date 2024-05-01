@@ -1,16 +1,11 @@
-
-
-import { DataSource, Repository } from "typeorm";
+import { DataSource } from "typeorm";
 import bcrypt from "bcrypt";
 import request from "supertest";
 import app from "../../src/app";
 import { AppDataSource } from "../../src/config/data-source";
-import createJWKSMock from "mock-jwks";
 import { isJWT } from "../utils";
 import { User } from "../../src/entity/User";
 import { Roles } from "../../src/constants";
-import { Tenant } from "../../src/entity/Tenant";
-import { createTenant } from "../utils";
 
 describe("POST /auth/login", () => {
   let connection: DataSource;
@@ -58,9 +53,10 @@ describe("POST /auth/login", () => {
       // Assert
       let accessToken = null;
       let refreshToken = null;
-      const cookies = ((response.headers as unknown) as Headers)["set-cookie"] || [];
+      const cookies =
+        (response.headers as unknown as Headers)["set-cookie"] || [];
 
-    //   const cookies = (response.headers as Headers)["set-cookie"] || [];
+      //   const cookies = (response.headers as Headers)["set-cookie"] || [];
       cookies.forEach((cookie) => {
         if (cookie.startsWith("accessToken=")) {
           accessToken = cookie.split(";")[0].split("=")[1];
