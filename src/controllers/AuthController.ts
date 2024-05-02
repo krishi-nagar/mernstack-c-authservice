@@ -20,7 +20,7 @@ export class AuthController {
     this.logger = logger;
     this.tokenService = tokenService;
   }
-  async register(req: RegisterUserRequest, res: Response, next: NextFunction) {
+  register = async(req: RegisterUserRequest, res: Response, next: NextFunction) {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).json({ errors: result.array() });
@@ -81,7 +81,7 @@ export class AuthController {
     }
   }
 
-  async login(req: RegisterUserRequest, res: Response, next: NextFunction) {
+  login= async (req: RegisterUserRequest, res: Response, next: NextFunction) {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).json({ errors: result.array() });
@@ -151,13 +151,13 @@ export class AuthController {
       return;
     }
   }
-  async self(req: AuthRequest, res: Response) {
+  self = async (req: AuthRequest, res: Response) {
     // token req.auth.id
     const user = await this.userService.findById(Number(req.auth.sub));
     res.json({ ...user, password: undefined });
   }
 
-  async refresh(req: AuthRequest, res: Response, next: NextFunction) {
+  refresh = async (req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const payload: JwtPayload = {
         sub: req.auth.sub,
