@@ -20,7 +20,7 @@ export class AuthController {
     this.logger = logger;
     this.tokenService = tokenService;
   }
-  register = async(req: RegisterUserRequest, res: Response, next: NextFunction) {
+  register = async(req: RegisterUserRequest, res: Response, next: NextFunction)=> {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).json({ errors: result.array() });
@@ -81,7 +81,7 @@ export class AuthController {
     }
   }
 
-  login= async (req: RegisterUserRequest, res: Response, next: NextFunction) {
+  login= async (req: RegisterUserRequest, res: Response, next: NextFunction)=> {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).json({ errors: result.array() });
@@ -151,13 +151,13 @@ export class AuthController {
       return;
     }
   }
-  self = async (req: AuthRequest, res: Response) {
+  self = async (req: AuthRequest, res: Response)=> {
     // token req.auth.id
     const user = await this.userService.findById(Number(req.auth.sub));
     res.json({ ...user, password: undefined });
   }
 
-  refresh = async (req: AuthRequest, res: Response, next: NextFunction) {
+  refresh = async (req: AuthRequest, res: Response, next: NextFunction)=> {
     try {
       const payload: JwtPayload = {
         sub: req.auth.sub,
@@ -210,7 +210,7 @@ export class AuthController {
     }
   }
 
-  async logout(req: AuthRequest, res: Response, next: NextFunction) {
+  logout =  async (req: AuthRequest, res: Response, next: NextFunction)=> {
     try {
       await this.tokenService.deleteRefreshToken(Number(req.auth.id));
       this.logger.info("refresh token has been deleted", { id: req.auth.id });
