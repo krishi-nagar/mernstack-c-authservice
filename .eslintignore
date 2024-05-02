@@ -1,5 +1,4 @@
-dist
 node_modules
+dist
 *.spec.ts
 tests/
-.github
