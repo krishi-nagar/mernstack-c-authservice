@@ -24,8 +24,16 @@ jobs:
         run: npm ci
       - name: Run eslint
         run: npm run lint
-      -name: Print Variable
-        run: echo "Variable Value: ${{ secrets.TEST_DB_HOST }}${{ secrets.TEST_DB_PORT }}${{ secrets.TEST_DB_USERNAME }} ${{ secrets.TEST_DB_PASSWORD }}${{ secrets.TEST_DB_NAME }}${{ secrets.REFRESH_TOKEN_SECRET }}${{ secrets.JWKS_URI }}${{ secrets.PRIVATE_KEY }}"
+      - name: Print Variable
+        run: |
+          echo "Variable Value: ${{ secrets.TEST_DB_HOST }}"
+          echo "Variable Value: ${{ secrets.TEST_DB_PORT }}"
+          echo "Variable Value: ${{ secrets.TEST_DB_USERNAME }}"
+          echo "Variable Value: ${{ secrets.TEST_DB_PASSWORD }}"
+          echo "Variable Value: ${{ secrets.TEST_DB_NAME }}"
+          echo "Variable Value: ${{ secrets.REFRESH_TOKEN_SECRET }}"
+          echo "Variable Value: ${{ secrets.JWKS_URI }}"
+          echo "Variable Value: ${{ secrets.PRIVATE_KEY }}"
       - name: Test and coverage
         run: npm run test
         env:
