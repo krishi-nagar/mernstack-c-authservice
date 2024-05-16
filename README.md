@@ -1,1 +1,0 @@
-Our awesome auth service
