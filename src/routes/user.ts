@@ -1,4 +1,4 @@
-import express, { NextFunction, Response } from "express";
+import express, { NextFunction, RequestHandler, Response } from "express";
 import authenticate from "../middlewares/authenticate";
 import { canAccess } from "../middlewares/canAccess";
 import { Roles } from "../constants";
@@ -20,6 +20,6 @@ router.post(
   authenticate,
   canAccess([Roles.ADMIN]),
   (req: CreateUserRequest, res: Response, next: NextFunction) =>
-    userController.create(req, res, next),
+    userController.create(req, res, next)as unknown as RequestHandler,
 );
 export default router;
