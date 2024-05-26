@@ -48,7 +48,7 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: mernstack-c-authservice
+      IMAGE_NAME: krishinagar26/mernstack-c-authservice
       IMAGE_TAG: build-${{ github.run_number }}
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     steps:
