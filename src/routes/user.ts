@@ -17,7 +17,7 @@ const userController = new UserController(userService, logger);
 
 router.post(
   "/",
-  authenticate,
+  authenticate as RequestHandler,
   canAccess([Roles.ADMIN]),
   (req: CreateUserRequest, res: Response, next: NextFunction) =>
     userController.create(req, res, next)as unknown as RequestHandler,

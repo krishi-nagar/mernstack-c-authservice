@@ -47,14 +47,14 @@ router.post(
 );
 router.get(
   "/self",
-  authenticate,
+  authenticate as RequestHandler,
   (req: Request, res: Response) =>
     authController.self(req as AuthRequest, res) as unknown as RequestHandler,
 );
 
 router.post(
   "/refresh",
-  validateRefreshToken,
+  validateRefreshToken as RequestHandler,
   (req: Request, res: Response, next: NextFunction) =>
     authController.refresh(
       req as AuthRequest,
@@ -65,8 +65,8 @@ router.post(
 
 router.post(
   "/logout",
-  authenticate,
-  parseRefreshToken,
+  authenticate as RequestHandler,
+  parseRefreshToken as RequestHandler,
   (req: Request, res: Response, next: NextFunction) =>
     authController.logout(
       req as AuthRequest,
